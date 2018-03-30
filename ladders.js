@@ -214,11 +214,11 @@ class Ladder extends LadderStore {
 			connection.popup(`The user '${targetUser.name}' is not accepting challenges right now.`);
 			return false;
 		}
-		if (Date.now() < user.lastChallenge + 10000) {
+		/*if (Date.now() < user.lastChallenge + 10000) {
 			// 10 seconds ago, probable misclick
 			connection.popup(`You challenged less than 10 seconds after your last challenge! It's cancelled in case it's a misclick.`);
 			return false;
-		}
+		}*/
 		const ready = await this.prepBattle(connection);
 		if (!ready) return false;
 		Ladder.addChallenge(new Challenge(ready, targetUser.userid));

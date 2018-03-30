@@ -148,7 +148,7 @@ const Monitor = module.exports = {
 	 * @return {boolean}
 	 */
 	countConnection(ip, name = '') {
-		let [count, duration] = this.connections.increment(ip, 30 * 60 * 1000);
+		/*let [count, duration] = this.connections.increment(ip, 30 * 60 * 1000);
 		if (count === 500) {
 			this.adminlog(`[ResourceMonitor] IP ${ip} banned for cflooding (${count} times in ${Chat.toDurationString(duration)}${name ? ': ' + name : ''})`);
 			return true;
@@ -164,6 +164,7 @@ const Monitor = module.exports = {
 			return true;
 		}
 
+		return false;*/
 		return false;
 	},
 
@@ -176,7 +177,7 @@ const Monitor = module.exports = {
 	 * @return {boolean}
 	 */
 	countBattle(ip, name = '') {
-		let [count, duration] = this.battles.increment(ip, 30 * 60 * 1000);
+		/*let [count, duration] = this.battles.increment(ip, 30 * 60 * 1000);
 		if (duration < 5 * 60 * 1000 && count % 30 === 0) {
 			this.adminlog(`[ResourceMonitor] IP ${ip} has battled ${count} times in the last ${Chat.toDurationString(duration)}${name ? ': ' + name : ''})`);
 			return true;
@@ -185,7 +186,7 @@ const Monitor = module.exports = {
 		if (count % 150 === 0) {
 			this.adminlog(`[ResourceMonitor] IP ${ip} has battled ${count} times in the last ${Chat.toDurationString(duration)}${name ? ': ' + name : ''}`);
 			return true;
-		}
+		}*/
 
 		return false;
 	},
@@ -198,11 +199,12 @@ const Monitor = module.exports = {
 	 * @return {boolean}
 	 */
 	countPrepBattle(ip, connection) {
-		let count = this.battlePreps.increment(ip, 3 * 60 * 1000)[0];
+		/*let count = this.battlePreps.increment(ip, 3 * 60 * 1000)[0];
 		if (count <= 12) return false;
 		if (count < 120 && Punishments.sharedIps.has(ip)) return false;
 		connection.popup('Due to high load, you are limited to 12 battles and team validations every 3 minutes.');
-		return true;
+		return true;*/
+		return false;
 	},
 
 	/**
@@ -213,9 +215,10 @@ const Monitor = module.exports = {
 	 * @return {boolean}
 	 */
 	countConcurrentBattle(count, connection) {
-		if (count <= 5) return false;
+		/*if (count <= 5) return false;
 		connection.popup(`Due to high load, you are limited to 5 games at the same time.`);
-		return true;
+		return true;*/
+		return false;
 	},
 	/**
 	 * Counts group chat creation. Returns true if too much.
@@ -224,8 +227,9 @@ const Monitor = module.exports = {
 	 * @return {boolean}
 	 */
 	countGroupChat(ip) {
-		let count = this.groupChats.increment(ip, 60 * 60 * 1000)[0];
-		return count > 4;
+		/*let count = this.groupChats.increment(ip, 60 * 60 * 1000)[0];
+		return count > 4;*/
+		return false;
 	},
 
 	/**
@@ -235,9 +239,10 @@ const Monitor = module.exports = {
 	 * @return {boolean}
 	 */
 	countTickets(ip) {
-		let count = this.tickets.increment(ip, 60 * 60 * 1000)[0];
+		/*let count = this.tickets.increment(ip, 60 * 60 * 1000)[0];
 		if (Punishments.sharedIps.has(ip) && count >= 50) return true;
 		if (count >= 5) return true;
+		return false;*/
 		return false;
 	},
 
